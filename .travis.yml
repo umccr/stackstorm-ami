@@ -18,7 +18,16 @@ install:
  - sudo unzip -d /usr/local/packer-${PACKER_VERSION} /tmp/packer.zip
  - sudo ln -sf /usr/local/packer-${PACKER_VERSION}/packer /usr/local/bin/packer
  - packer --version
+ - pip install awscli --upgrade
+
+before_script:
+ - ./create_aws_profile.sh
+ - export AWS_PROFILE=packer
+
+
 
 script:
   - ls -al
   - echo "building stackstorm-ami"
+  - aws s3 ls
+  - aws s3 ls --profile packer
