@@ -20,11 +20,7 @@ install:
   - packer --version
   - sudo apt-get install -y jq
   - pip install awscli --upgrade
-
-before_script:
+  - aws --version
 
 script:
-  - ./setup_aws_env.sh
-  - env | grep AWS
-  - aws s3 ls
-  - packer build stackstorm.json
+  - ./build.sh
