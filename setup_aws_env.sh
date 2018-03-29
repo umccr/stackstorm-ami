@@ -1,3 +1,6 @@
+#!/bin/bash
+set -e
+
 export AWS_REGION=ap-southeast-2
 
 temp_role=$(aws sts assume-role --role-arn "arn:aws:iam::472057503814:role/ops_admin_no_mfa" --role-session-name "temp_session")
