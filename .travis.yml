@@ -13,6 +13,7 @@ before_install:
 
 install:
   # Install Packer.io
+  - sudo apt-get install -y jq
   - packer --version # show what is already installed
   - curl -o /tmp/packer.zip -L "https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip"
   - sudo unzip -d /usr/local/packer-${PACKER_VERSION} /tmp/packer.zip
@@ -21,8 +22,8 @@ install:
   - pip install awscli --upgrade
 
 before_script:
-  - ./create_aws_profile.sh
+  - ./setup_aws_env.sh
 
 script:
-  - aws s3 ls --profile packer
+  - aws s3 ls
   - packer build stackstorm.json

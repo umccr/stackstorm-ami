@@ -8,7 +8,6 @@
     {
       "name": "{{user `custom_ami_name`}}",
       "type": "amazon-ebs",
-      "profile": "packer",
       "iam_instance_profile": "new_packer_instance_profile",
       "region": "ap-southeast-2",
       "source_ami": "ami-79915c1b",
