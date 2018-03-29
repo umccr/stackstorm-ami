@@ -22,13 +22,11 @@ install:
 
 before_script:
  - ./create_aws_profile.sh
- - export AWS_PROFILE=packer
-
-
 
 script:
   - ls -al ~/.aws/
   - ls -al
   - echo "building stackstorm-ami"
+  - export AWS_PROFILE=packer
   - aws s3 ls
   - aws s3 ls --profile packer
