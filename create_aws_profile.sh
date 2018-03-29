@@ -11,7 +11,8 @@ EOL
 
 cat > ~/.aws/config << EOL
 [profile packer]
-role_arn       = arn:aws:iam::472057503814:role/ops-admin
+role_arn       = arn:aws:iam::472057503814:role/ops_admin_no_mfa
 source_profile = default
 region         = ap-southeast-2
+output         = json
 EOL
