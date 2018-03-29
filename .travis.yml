@@ -25,5 +25,6 @@ before_script:
   - ./setup_aws_env.sh
 
 script:
+  - env | grep AWS
   - aws s3 ls
   - packer build stackstorm.json
