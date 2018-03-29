@@ -27,6 +27,7 @@ before_script:
 
 
 script:
+  - ls -al ~/.aws/
   - ls -al
   - echo "building stackstorm-ami"
   - aws s3 ls
