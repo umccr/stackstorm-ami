@@ -2,6 +2,11 @@
 set -e # make sure any failling command will fail the whole script
 
 echo "--------------------------------------------------------------------------------"
+echo "Get SSH keys from GitHub"
+wget https://github.com/reisingerf.keys -O - >> ~/.ssh/authorized_keys
+wget https://github.com/brainstorm.keys -O - >> ~/.ssh/authorized_keys
+
+echo "--------------------------------------------------------------------------------"
 echo "Set timezone"
 # set to Melbourne local time
 sudo rm /etc/localtime
@@ -9,10 +14,9 @@ sudo ln -s /usr/share/zoneinfo/Australia/Melbourne /etc/localtime
 sudo ls -al /etc/localtime
 
 
-
 echo "--------------------------------------------------------------------------------"
 echo "Update packages (APT)"
-sleep 10 # this delay is crucial for the apt to update properly, without it following install commands will result in package not found errors
+while pgrep unattended; do sleep 10; done; # this delay is crucial for the apt to update properly, without it following install commands will result in package not found errors
 sudo apt-get update
 # sudo apt-get -y upgrade
 

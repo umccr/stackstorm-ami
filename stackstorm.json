@@ -60,9 +60,7 @@
         "ls -hal .",
         "./common-setup.sh",
         "./bootstrap-docker.sh",
-        "sleep 10",
         "./bootstrap-stackstorm.sh",
-        "sleep 10",
         "./cleanup.sh"
       ]
     }
