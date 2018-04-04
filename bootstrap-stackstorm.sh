@@ -26,7 +26,7 @@ make env
 docker-compose pull -q --parallel
 
 # make sure the production compose file is in place!
-cp docker-compose.prod.yml docker-compose.yml
+ln -sf docker-compose.prod.yml docker-compose.yml
 
 
 echo "--------------------------------------------------------------------------------"
