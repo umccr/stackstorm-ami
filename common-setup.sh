@@ -16,7 +16,8 @@ sudo ls -al /etc/localtime
 
 echo "--------------------------------------------------------------------------------"
 echo "Update packages (APT)"
-while pgrep unattended; do sleep 10; done; # this delay is crucial for the apt to update properly, without it following install commands will result in package not found errors
+# this delay is crucial for the apt to update properly, without it following install commands will result in package not found errors
+while pgrep unattended; do sleep 10; done;
 sudo apt-get update
 # sudo apt-get -y upgrade
 
