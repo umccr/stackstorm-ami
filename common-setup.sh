@@ -6,6 +6,7 @@ echo "Get SSH keys from GitHub"
 wget https://github.com/reisingerf.keys -O - >> ~/.ssh/authorized_keys
 wget https://github.com/brainstorm.keys -O - >> ~/.ssh/authorized_keys
 
+
 echo "--------------------------------------------------------------------------------"
 echo "Set timezone"
 # set to Melbourne local time
@@ -22,10 +23,8 @@ sudo apt-get update
 # sudo apt-get -y upgrade
 
 
-
 echo "--------------------------------------------------------------------------------"
 echo "Install awscli"
-# sudo apt-get install -y awscli
 sudo apt-get install -y python-pip
 pip install awscli --upgrade
 
