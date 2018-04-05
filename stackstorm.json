@@ -1,6 +1,7 @@
 {
   "variables": {
-    "name": "{{env `TRAVIS_TAG`}}",
+    "commit_id": "{{env `TRAVIS_COMMIT`}}",
+    "commit_msg": "{{env `TRAVIS_COMMIT_MESSAGE`}}",
     "custom_ami_name": "stackstorm-ami",
     "ssh_username": "ubuntu"
   },
@@ -23,8 +24,10 @@
       },
       "tags": {
         "ami": "{{user `custom_ami_name`}}",
-        "Name": "{{user `name`}}",
-        "timestamp": "{{timestamp}}"
+        "Name": "{{user `custom_ami_name`}}:{{user `commit_id`}}",
+        "timestamp": "{{timestamp}}",
+        "commit": "{{user `commit_id`}}",
+        "commit_msg": "{{user `commit_msg`}}"
       },
       "associate_public_ip_address": true
     }
