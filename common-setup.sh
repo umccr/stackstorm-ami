@@ -13,6 +13,7 @@ do
 done
 echo "All SSH keys from $ORG added to the AMI's ~/.ssh/authorized_keys"
 
+
 echo "--------------------------------------------------------------------------------"
 echo "Set timezone"
 # set to Melbourne local time
@@ -29,10 +30,8 @@ sudo apt-get update
 # sudo apt-get -y upgrade
 
 
-
 echo "--------------------------------------------------------------------------------"
 echo "Install awscli"
-# sudo apt-get install -y awscli
 sudo apt-get install -y python-pip
 pip install awscli --upgrade
 
