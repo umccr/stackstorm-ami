@@ -2,9 +2,16 @@
 set -e # make sure any failling command will fail the whole script
 
 echo "--------------------------------------------------------------------------------"
-echo "Get SSH keys from GitHub"
-wget https://github.com/reisingerf.keys -O - >> ~/.ssh/authorized_keys
-wget https://github.com/brainstorm.keys -O - >> ~/.ssh/authorized_keys
+# Allows *public* members on UMCCR org to SSH to our AMIs
+ORG="UMCCR"
+
+echo "Fetching GitHub SSH keys for $ORG members..."
+org_ssh_keys=`curl -s https://api.github.com/orgs/$ORG/members | jq -r .[].html_url | sed 's/$/.keys/'`
+for ssh_key in $org_ssh_keys
+do
+	wget $ssh_key -O - >> ~/.ssh/authorized_keys
+done
+echo "All SSH keys from $ORG added to the AMI's ~/.ssh/authorized_keys"
 
 echo "--------------------------------------------------------------------------------"
 echo "Set timezone"
