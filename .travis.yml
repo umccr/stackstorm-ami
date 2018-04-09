@@ -1,32 +1,25 @@
 language: python
-
 branches:
   only:
   - master
-
 env:
   global:
-    - PACKER_VERSION="1.2.2"
-
+  - PACKER_VERSION="1.2.2"
 before_install:
-  - sudo apt-get update -y --fix-missing
-
+- sudo apt-get update -y --fix-missing
 install:
-  # Install Packer.io
-  - packer --version # show what is already installed
-  - curl -o /tmp/packer.zip -L "https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip"
-  - sudo unzip -d /usr/local/packer-${PACKER_VERSION} /tmp/packer.zip
-  - sudo ln -sf /usr/local/packer-${PACKER_VERSION}/packer /usr/local/bin/packer
-  - packer --version
-  - sudo apt-get install -y jq
-  - pip install awscli --upgrade
-  - aws --version
-
+- packer --version
+- curl -o /tmp/packer.zip -L "https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip"
+- sudo unzip -d /usr/local/packer-${PACKER_VERSION} /tmp/packer.zip
+- sudo ln -sf /usr/local/packer-${PACKER_VERSION}/packer /usr/local/bin/packer
+- packer --version
+- sudo apt-get install -y jq
+- pip install awscli --upgrade
+- aws --version
 script:
-  - ./build.sh
-
+- "./build.sh"
 notifications:
   email: false
   slack:
     rooms:
-      - umccr:${SLACK_TRAVIS_TOKEN}#travisci
+      secure: GYxJzdZ2sFMsrl3R78F7vwHmSWIs4wT4qMWmgtDubo0UorIYp01/deYkbDu3m/g3n7b3mp12GgzmTzux8pADcImzHNWC4aV06KYxs81DAn7/OSjeYQaGL8e3S9ddbtJfkBQQcMlC6n9N3zkCqmVDUrHusweu+EK8Xp7bh29Wj4YQD3VzoEW9HZelodoXMtOn47MmyVgH4xDbGD8Zqx3/IPFDrVLX4DVRue7oZBcFeEiNUrl/M7B65tyRBPT69WzfF+7YlnTqcEXTqBes2+8+Hv+s0G+j+HkVfpK/8wTzchzuxbojgAYJfl+9QHiIsTjbBLOziZLzpDq4Y4vJiyl/0Ke0VS2qEpU2nqzEmVmwAjHzBcHmBBXU4lz0knTrwJSUuuOA3HX/71e0QXWo8bD9INIA+BonqgiXmMIUztYuSXYDEX6EUVIC66897TQwyInbtHxs9dezKBAY0KbuKhvunI4Jo3cuBcPd4RZ0N4bWWmi0iRp4bfPmg7dRxJXbwfsIUghvvb81HyKb++5EoRMOAKy17toXQd6EW8KxcWVqyQnA5csYx+OQl/r5t4uehHt9qUHQY2v34xrSCPswzWUs152e0Nx8cdoQgcq6Uh8otL7z5+l3U4dUx5cXNjR/knm5dnrX4lw44X/G2RxPVcfxMUPJiZ1BdDZ2R1C8EetBYNo=
