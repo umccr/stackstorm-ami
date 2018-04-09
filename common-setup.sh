@@ -1,17 +1,5 @@
 #!/bin/bash -x
-set -e # make sure any failling command will fail the whole script
-
-echo "--------------------------------------------------------------------------------"
-# Allows *public* members on UMCCR org to SSH to our AMIs
-ORG="UMCCR"
-
-echo "Fetching GitHub SSH keys for $ORG members..."
-org_ssh_keys=`curl -s https://api.github.com/orgs/$ORG/members | jq -r .[].html_url | sed 's/$/.keys/'`
-for ssh_key in $org_ssh_keys
-do
-	wget $ssh_key -O - >> ~/.ssh/authorized_keys
-done
-echo "All SSH keys from $ORG added to the AMI's ~/.ssh/authorized_keys"
+set -euxo pipefail # make sure any failling command will fail the whole script
 
 
 echo "--------------------------------------------------------------------------------"
@@ -28,6 +16,10 @@ echo "Update packages (APT)"
 while pgrep unattended; do sleep 10; done;
 sudo apt-get update
 # sudo apt-get -y upgrade
+
+echo "--------------------------------------------------------------------------------"
+echo "Install jq"
+sudo apt-get install -y jq
 
 
 echo "--------------------------------------------------------------------------------"
@@ -61,3 +53,16 @@ echo "user_allow_other" | sudo tee -a /etc/fuse.conf
 # # https://rexray.readthedocs.io/en/stable/user-guide/installation/
 # cd /tmp/
 # curl -sSL https://rexray.io/install | sh -s -- stable
+
+
+echo "--------------------------------------------------------------------------------"
+# Allows *public* members on UMCCR org to SSH to our AMIs
+ORG="UMCCR"
+
+echo "Fetching GitHub SSH keys for $ORG members..."
+org_ssh_keys=`curl -s https://api.github.com/orgs/$ORG/members | jq -r .[].html_url | sed 's/$/.keys/'`
+for ssh_key in $org_ssh_keys
+do
+	wget $ssh_key -O - >> ~/.ssh/authorized_keys
+done
+echo "All SSH keys from $ORG added to the AMI's ~/.ssh/authorized_keys"
