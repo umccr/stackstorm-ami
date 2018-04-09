@@ -27,4 +27,6 @@ script:
 
 notifications:
   email: false
-  slack: umccr:${SLACK_TRAVIS_TOKEN}#travisci
+  slack:
+    rooms:
+      - umccr:${SLACK_TRAVIS_TOKEN}#travisci
