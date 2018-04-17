@@ -11,6 +11,11 @@ sudo ls -al /etc/localtime
 
 
 echo "--------------------------------------------------------------------------------"
+echo "Configure SSH"
+echo "GatewayPorts yes" | sudo tee -a /etc/ssh/sshd_config
+
+
+echo "--------------------------------------------------------------------------------"
 echo "Update packages (APT)"
 # this delay is crucial for the apt to update properly, without it following install commands will result in package not found errors
 while pgrep unattended; do sleep 10; done;
