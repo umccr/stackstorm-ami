@@ -45,8 +45,9 @@ sudo chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 
 
-echo "--------------------------------------------------------------------------------"
-echo "Installing docker rexray EBS plugin"
+# disabled until the rexray issue is solved
+# echo "--------------------------------------------------------------------------------"
+# echo "Installing docker rexray EBS plugin"
 # install docker driver plugin for REX-Ray (to mount AWS storage devices via docker volumes)
 # https://rexray.readthedocs.io/en/stable/user-guide/schedulers/docker/plug-ins/aws/#simple-storage-service
 # NOTE: Installation requires AWS access granted via stackstorm_instance_profile.
@@ -56,5 +57,4 @@ echo "Installing docker rexray EBS plugin"
 #       Will allow restriction of Terraform profile to specific buckets.
 # echo "Installing rexray S3 plugin"
 # docker plugin install --grant-all-permissions rexray/s3fs S3FS_REGION=ap-southeast-2
-
-docker plugin install --grant-all-permissions rexray/ebs EBS_REGION=ap-southeast-2
+# docker plugin install --grant-all-permissions rexray/ebs EBS_REGION=ap-southeast-2
