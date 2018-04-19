@@ -18,7 +18,7 @@ cd /opt/st2-docker-umccr
 # make sure the production compose file is in place!
 ln -sf docker-compose.prod.yml docker-compose.yml
 ##### pre-load the required docker images into the AMI (makes first startup in production faster)
-docker-compose pull -quiet --parallel
+docker-compose pull --quiet --parallel
 
 
 
