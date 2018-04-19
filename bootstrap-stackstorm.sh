@@ -17,6 +17,7 @@ cd /opt/st2-docker-umccr
 
 # put the local compose file is in place so the docker-compose does not complain about missing resources
 ln -sf docker-compose.local.yml docker-compose.yml
+make env
 ##### pre-load the required docker images into the AMI (makes first startup in production faster)
 docker-compose pull --quiet --parallel
 # make sure the production compose file is in place!
