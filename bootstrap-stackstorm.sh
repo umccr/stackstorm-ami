@@ -14,15 +14,9 @@ git clone https://github.com/umccr/st2-docker-umccr.git /opt/st2-docker-umccr
 echo "--------------------------------------------------------------------------------"
 echo "Preparing for docker-compose"
 cd /opt/st2-docker-umccr
-# switch to the development branch
-# TODO: switch back to master once stable
-git checkout development
 
 
 ##### pre-load the required docker images into the AMI (makes first startup in production faster)
-# NOTE: requires the local compose file, as the production env is not available
-cp docker-compose.local.yml docker-compose.yml
-make env
 docker-compose pull -q --parallel
 
 # make sure the production compose file is in place!
