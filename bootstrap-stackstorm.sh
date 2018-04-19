@@ -15,12 +15,11 @@ echo "--------------------------------------------------------------------------
 echo "Preparing for docker-compose"
 cd /opt/st2-docker-umccr
 
-
-##### pre-load the required docker images into the AMI (makes first startup in production faster)
-docker-compose pull -q --parallel
-
 # make sure the production compose file is in place!
 ln -sf docker-compose.prod.yml docker-compose.yml
+##### pre-load the required docker images into the AMI (makes first startup in production faster)
+docker-compose pull -quiet --parallel
+
 
 
 echo "--------------------------------------------------------------------------------"
