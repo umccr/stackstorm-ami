@@ -15,10 +15,12 @@ echo "--------------------------------------------------------------------------
 echo "Preparing for docker-compose"
 cd /opt/st2-docker-umccr
 
-# make sure the production compose file is in place!
-ln -sf docker-compose.prod.yml docker-compose.yml
+# put the local compose file is in place so the docker-compose does not complain about missing resources
+ln -sf docker-compose.local.yml docker-compose.yml
 ##### pre-load the required docker images into the AMI (makes first startup in production faster)
 docker-compose pull --quiet --parallel
+# make sure the production compose file is in place!
+ln -sf docker-compose.prod.yml docker-compose.yml
 
 
 
