@@ -89,6 +89,7 @@ sudo tee /etc/cron.daily/amicleaner.sh << 'END'
 log_file='/opt/ami-cleaner/run.log'
 echo "------------------------------" >> "$log_file"
 echo "$(date +'%Y-%m-%d %H:%M:%S.%N')" >> "$log_file"
+export AWS_DEFAULT_REGION=ap-southeast-2
 amicleaner --mapping-key tags --mapping-values ami --keep-previous 2 --check-orphans --full-report -f >> "$log_file"
 END
 chmod 755 /etc/cron.daily/amicleaner.sh
