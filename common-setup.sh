@@ -75,3 +75,20 @@ echo "All SSH keys from $ORG added to the AMI's ~/.ssh/authorized_keys"
 
 echo "Adding key for novastor"
 echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC6DPL4+ORF/cXZ9qhQryQyZhKl6piPKUmkoHeLPJY80z87+zpWTilY/fWwgixouzbBdvmEMVtF0SrzPPCJAydX/kut+g8pagm4nLqskyybMpuWnrvJvYe/rEUbuLsQ6uxpLevc0rjnwcJTKlRQgOU95IG+/9MgRnp6vL+ETcRpFuKfhbrKEH8W50fb5ev+z2JNKE2VZSeWnwDOE4Ux4qo1PyAKtv118k5iZ0gCxrX5dwch3yETKgqAxzN+MXSlFlRwAwfBfhBGu349mGlloy0lKMpQhlGC2cNS5jGj+wzGWUi308V0HFBOiR+Z/zilQqWLvQgZ6pSZsY0/rfQaGk5T limsadmin@5180-novastor01.mdhs.unimelb.edu.au" >> ~/.ssh/authorized_keys
+
+
+
+echo "--------------------------------------------------------------------------------"
+echo "Adding AMI cleaner"
+sudo pip install aws-amicleaner
+export AWS_DEFAULT_REGION=ap-southeast-2
+
+sudo mkdir /opt/ami-cleaner
+sudo chown ubuntu:ubuntu /opt/ami-cleaner
+sudo tee /etc/cron.daily/amicleaner.sh << 'END'
+log_file='/opt/ami-cleaner/run.log'
+echo "------------------------------" >> "$log_file"
+echo "$(date +'%Y-%m-%d %H:%M:%S.%N')" >> "$log_file"
+amicleaner --mapping-key tags --mapping-values ami --keep-previous 2 --check-orphans --full-report -f >> "$log_file"
+END
+chmod 755 /etc/cron.daily/amicleaner.sh
