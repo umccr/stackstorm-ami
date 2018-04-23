@@ -24,4 +24,4 @@ install:
 script:
 - "./build.sh"
 after_success:
-  - send-datadog-event.sh
+  - "./send-datadog-event.sh"
