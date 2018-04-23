@@ -50,9 +50,9 @@ echo "Adding key for novastor"
 echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC6DPL4+ORF/cXZ9qhQryQyZhKl6piPKUmkoHeLPJY80z87+zpWTilY/fWwgixouzbBdvmEMVtF0SrzPPCJAydX/kut+g8pagm4nLqskyybMpuWnrvJvYe/rEUbuLsQ6uxpLevc0rjnwcJTKlRQgOU95IG+/9MgRnp6vL+ETcRpFuKfhbrKEH8W50fb5ev+z2JNKE2VZSeWnwDOE4Ux4qo1PyAKtv118k5iZ0gCxrX5dwch3yETKgqAxzN+MXSlFlRwAwfBfhBGu349mGlloy0lKMpQhlGC2cNS5jGj+wzGWUi308V0HFBOiR+Z/zilQqWLvQgZ6pSZsY0/rfQaGk5T limsadmin@5180-novastor01.mdhs.unimelb.edu.au" >> ~/.ssh/authorized_keys
 
 
-
 echo "--------------------------------------------------------------------------------"
 echo "Adding AMI cleaner"
+# see http://techblog.d2-si.eu/2017/06/15/cleaning-your-amazon-machine-images.html
 sudo pip install aws-amicleaner
 export AWS_DEFAULT_REGION=ap-southeast-2
 
