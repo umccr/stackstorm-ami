@@ -12,4 +12,4 @@ export AWS_SECRET_ACCESS_KEY=$(echo $temp_role | jq .Credentials.SecretAccessKey
 export AWS_SESSION_TOKEN=$(echo $temp_role | jq .Credentials.SessionToken | xargs)
 
 # with the new access credentials packer can now build the AMI
-packer build stackstorm.json
+packer build -machine-readable stackstorm.json | sudo tee packer-build.log
