@@ -58,7 +58,8 @@ export AWS_DEFAULT_REGION=ap-southeast-2
 
 sudo mkdir /opt/ami-cleaner
 sudo chown ubuntu:ubuntu /opt/ami-cleaner
-sudo tee /etc/cron.daily/amicleaner.sh << 'END'
+sudo tee /etc/cron.daily/amicleaner << 'END'
+#!/bin/bash
 log_file='/opt/ami-cleaner/run.log'
 echo "------------------------------" >> "$log_file"
 echo "$(date +'%Y-%m-%d %H:%M:%S.%N')" >> "$log_file"
