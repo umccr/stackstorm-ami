@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+set -o pipefail
 
 
 # assume the ops_admin_no_mfa role to get the needed AWS permissions and set the stage for the following packer build
