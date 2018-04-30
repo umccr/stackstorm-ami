@@ -7,18 +7,22 @@
   },
   "builders": [
     {
+      "ami_name": "{{user `custom_ami_name`}} {{timestamp}}",
+      "instance_type": "t2.medium",
+      "region": "ap-southeast-2",
+      "source_ami": "ami-79915c1b",
+      "ami_description": "{{user `custom_ami_name`}} AMI",
       "name": "{{user `custom_ami_name`}}",
       "type": "amazon-ebs",
       "iam_instance_profile": "new_packer_instance_profile",
-      "region": "ap-southeast-2",
-      "source_ami": "ami-79915c1b",
-      "instance_type": "t2.medium",
       "spot_price": "auto",
       "spot_price_auto_product": "Linux/UNIX",
       "ssh_username": "{{user `ssh_username`}}",
       "ssh_timeout": "10m",
-      "ami_name": "{{user `custom_ami_name`}} {{timestamp}}",
-      "ami_description": "{{user `custom_ami_name`}} AMI",
+      "ami_users": [
+        "472057503814",
+        "620123204273"
+      ],
       "run_tags": {
         "ami-create": "{{user `custom_ami_name`}}"
       },
