@@ -24,7 +24,15 @@ sudo apt-get update
 
 echo "--------------------------------------------------------------------------------"
 echo "Install jq"
-sudo apt-get install -y jq
+for attempt in 1 2 3; do
+  if [ ! -z "`which jq`" ]; then
+    break
+  fi
+  echo "Trying to install jq, attempt $attempt"
+  sudo apt-get update -yq --fix-missing
+  sudo apt-get install -yq jq
+done
+
 
 
 echo "--------------------------------------------------------------------------------"
